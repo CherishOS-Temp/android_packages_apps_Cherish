@@ -226,6 +226,10 @@
         android:title="@string/torch_power_button_gesture_title"
         android:entries="@array/torch_power_button_gesture_entries"
         android:entryValues="@array/torch_power_button_gesture_values" />
-
+		
+	<SwitchPreference
+        android:key="force_show_navbar"
+        android:title="@string/navigation_bar_title"
+        android:summary="@string/navigation_bar_summary" />
 
 </PreferenceScreen>
