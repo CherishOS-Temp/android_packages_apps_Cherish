@@ -28,6 +28,11 @@ import android.os.RemoteException;
 import android.os.PowerManager;
 import android.os.ServiceManager;
 import androidx.preference.PreferenceCategory;
+import android.os.SystemProperties;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
@@ -104,6 +109,10 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     private Preference mLayoutSettings;
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrows;
+
+    private boolean mIsNavSwitchingMode = false;
+
+    private Handler mHandler;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -225,6 +234,9 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
 
         mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
+
+        mHandler = new Handler();
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -252,8 +264,18 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
                     Settings.System.CUSTOM_BUTTON_BRIGHTNESS, buttonBrightness);
         } else if (preference == mNavigationBar) {
             boolean value = (Boolean) newValue;
+            if (mIsNavSwitchingMode) {
+                return false;
+            }
+            mIsNavSwitchingMode = true;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.FORCE_SHOW_NAVBAR, value ? 1 : 0);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mIsNavSwitchingMode = false;
+                }
+            }, 1500);
             return true;
         }
         return false;
