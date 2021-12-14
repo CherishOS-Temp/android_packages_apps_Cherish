@@ -37,4 +37,12 @@
             android:title="@string/theme_customization_sysui_icon_title"/>
 
     </PreferenceCategory>
+	
+	<com.cherish.settings.preferences.SystemSettingListPreference
+        android:key="qs_clock_picker"
+        android:defaultValue="0"
+        android:title="@string/qsclockpicker_title"
+        android:entries="@array/qsclock_type_entries"
+        android:entryValues="@array/qsclock_type_values"
+        android:summary="%s" />
 </PreferenceScreen>
