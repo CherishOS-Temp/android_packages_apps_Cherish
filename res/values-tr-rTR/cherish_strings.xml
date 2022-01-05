@@ -484,9 +484,9 @@
     <string name="vowifi_icon_simple1">Basit 1</string>
     <string name="vowifi_icon_simple2">Basit 2</string>
     <string name="vowifi_icon_simple3">Basit 3</string>
+    <!-- Lockscreen media artwork -->
     <string name="vowifi_icon_vivo">Vivo</string>
     <string name="vowifi_icon_margaritov">Margaritov</string>
-    <!-- Lockscreen media artwork -->
     <string name="lockscreen_media_blur_title">Medya resmi bulanıklık seviyesi</string>
     <string name="show_lockscreen_media_art_title">Medya resmini göster</string>
     <string name="lockscreen_media_art_options_title">Kilit ekranı medya resmi</string>
